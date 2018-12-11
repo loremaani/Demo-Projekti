@@ -1,0 +1,40 @@
+# Echo client program
+import socket
+move = 0
+x = 1
+y = 0
+
+
+def liikefunktio (x,y):
+	if  move == (0,0):
+		liike = 1
+	elif move == (0,1):
+		liike = 2
+	elif move == (0,2):
+		liike = 3
+	elif  move == (1,0):
+		liike = 4
+	elif move == (1,1):
+		liike = 5
+	elif move == (1,2):
+		liike = 6
+	elif  move == (2,0):
+		liike = 7
+	elif move == (2,1):
+		liike = 8
+	elif move == (2,2):
+		liike = 9
+	else:
+		print("else printtaus")
+
+#HOST = "192.168.0.9"    # The remote host
+HOST = "127.0.0.1"
+PORT = 8888              # The same port as used by the server
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.connect((HOST, PORT))
+liikefunktio(x,y)
+s.send ("set_digital_out(liike,True)" + "\n")
+data = s.recv(1024)
+s.close()
+print ("Received", repr(data))
+
