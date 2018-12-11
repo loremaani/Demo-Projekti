@@ -144,6 +144,7 @@ class GUI:
     self.update()
     move = self.board.best()
     if move:
+      print(move)#tässä printataan liike
       self.board = self.board.move(*move)
       self.update()
     self.app.config(cursor="")
