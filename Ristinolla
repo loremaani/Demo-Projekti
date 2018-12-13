@@ -243,10 +243,10 @@ class GUI:
 		if move:
 			self.board = self.board.move(*move)
 			self.update()
-			liike1 = x
-			liike2 = y
+			liike1 = move[0]
+			liike2 = move[1]
 			objekti = Liike()
-			objekti1 = objekti.liikefunktio(liike1,liike2)
+			objekti1 = objekti.liikefunktio(liike1, liike2)
 			print(move)
 		self.app.config(cursor="")
  
