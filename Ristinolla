@@ -18,7 +18,7 @@ class Liike:
 			print(liike)
 			s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 			s.connect((HOST, PORT))
-			s.send ("set_digital_out(1,True)" + "\n")
+			s.send ("set_digital_out(0,True)" + "\n")
 			data = s.recv(1024)
 			s.close()
 			print ("Received", repr(data))
@@ -27,7 +27,7 @@ class Liike:
 			print(liike)
 			s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 			s.connect((HOST, PORT))
-			s.send ("set_digital_out(2,True)" + "\n")
+			s.send ("set_digital_out(1,True)" + "\n")
 			data = s.recv(1024)
 			s.close()
 			print ("Received", repr(data))
@@ -36,7 +36,7 @@ class Liike:
 			print(liike)
 			s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 			s.connect((HOST, PORT))
-			s.send ("set_digital_out(3,True)" + "\n")
+			s.send ("set_digital_out(2,True)" + "\n")
 			data = s.recv(1024)
 			s.close()
 			print ("Received", repr(data))
@@ -45,7 +45,7 @@ class Liike:
 			print(liike)
 			s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 			s.connect((HOST, PORT))
-			s.send ("set_digital_out(4,True)" + "\n")
+			s.send ("set_digital_out(3,True)" + "\n")
 			data = s.recv(1024)
 			s.close()
 			print ("Received", repr(data))
@@ -54,7 +54,7 @@ class Liike:
 			print(liike)
 			s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 			s.connect((HOST, PORT))
-			s.send ("set_digital_out(5,True)" + "\n")
+			s.send ("set_digital_out(4,True)" + "\n")
 			data = s.recv(1024)
 			s.close()
 			print ("Received", repr(data))
@@ -63,7 +63,7 @@ class Liike:
 			print(liike)
 			s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 			s.connect((HOST, PORT))
-			s.send ("set_digital_out(6,True)" + "\n")
+			s.send ("set_digital_out(5,True)" + "\n")
 			data = s.recv(1024)
 			s.close()
 			print ("Received", repr(data))
@@ -72,7 +72,7 @@ class Liike:
 			print(liike)
 			s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 			s.connect((HOST, PORT))
-			s.send ("set_digital_out(7,True)" + "\n")
+			s.send ("set_digital_out(6,True)" + "\n")
 			data = s.recv(1024)
 			s.close()
 			print ("Received", repr(data))
@@ -81,7 +81,7 @@ class Liike:
 			print(liike)
 			s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 			s.connect((HOST, PORT))
-			s.send ("set_digital_out(8,True)" + "\n")
+			s.send ("set_digital_out(7,True)" + "\n")
 			data = s.recv(1024)
 			s.close()
 			print ("Received", repr(data))
@@ -90,7 +90,7 @@ class Liike:
 			print(liike)
 			s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 			s.connect((HOST, PORT))
-			s.send ("set_digital_out(9,True)" + "\n")
+			s.send ("set_configurable_digital_out(1,True)" + "\n")
 			data = s.recv(1024)
 			s.close()
 			print ("Received", repr(data))
@@ -241,13 +241,13 @@ class GUI:
 		self.update()
 		move = self.board.best()
 		if move:
-			print(move)
 			self.board = self.board.move(*move)
 			self.update()
 			liike1 = x
 			liike2 = y
 			objekti = Liike()
 			objekti1 = objekti.liikefunktio(liike1,liike2)
+			print(move)
 		self.app.config(cursor="")
  
 	def update(self):
@@ -273,5 +273,3 @@ class GUI:
  
 if __name__ == '__main__':
 	GUI().mainloop()
-
-		
