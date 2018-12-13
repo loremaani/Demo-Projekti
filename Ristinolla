@@ -1,30 +1,134 @@
-# coding=UTF8
+#ensimmainen kierros toimii :))
+
+
+
+# Echo client program
+import socket
+	# coding=UTF8
 from Tkinter import Tk, Button
 from tkFont import Font
 from copy import deepcopy
 
+
+
+class Liike:
+	
+
+	
+	def __init__(self):
+		liike = 0
+	
+	def liikefunktio(self, liike1, liike2):
+		#HOST = "192.168.0.9"	# The remote host
+		HOST = "127.0.0.1"
+		PORT = 8888         	# The same port as used by the server
+	
+		if  liike1 == 0 and liike2 == 0:
+			liike = 1
+			print(liike)
+			s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+			s.connect((HOST, PORT))
+			s.send ("set_digital_out(1,True)" + "\n")
+			data = s.recv(1024)
+			s.close()
+			print ("Received", repr(data))
+		elif liike1 == 1 and liike2 == 0:
+			liike = 2
+			print(liike)
+			s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+			s.connect((HOST, PORT))
+			s.send ("set_digital_out(2,True)" + "\n")
+			data = s.recv(1024)
+			s.close()
+			print ("Received", repr(data))
+		elif liike1 == 2 and liike2 == 0:
+			liike = 3
+			print(liike)
+			s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+			s.connect((HOST, PORT))
+			s.send ("set_digital_out(3,True)" + "\n")
+			data = s.recv(1024)
+			s.close()
+			print ("Received", repr(data))
+		elif  liike1 == 0 and liike2 == 1:
+			liike = 4
+			print(liike)
+			s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+			s.connect((HOST, PORT))
+			s.send ("set_digital_out(4,True)" + "\n")
+			data = s.recv(1024)
+			s.close()
+			print ("Received", repr(data))
+		elif liike1 == 1 and liike2 == 1:
+			liike = 5
+			print(liike)
+			s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+			s.connect((HOST, PORT))
+			s.send ("set_digital_out(5,True)" + "\n")
+			data = s.recv(1024)
+			s.close()
+			print ("Received", repr(data))
+		elif liike1 == 2 and liike2 == 1:
+			liike = 6
+			print(liike)
+			s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+			s.connect((HOST, PORT))
+			s.send ("set_digital_out(6,True)" + "\n")
+			data = s.recv(1024)
+			s.close()
+			print ("Received", repr(data))
+		elif  liike1 == 0 and liike2 == 2:
+			liike = 7
+			print(liike)
+			s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+			s.connect((HOST, PORT))
+			s.send ("set_digital_out(7,True)" + "\n")
+			data = s.recv(1024)
+			s.close()
+			print ("Received", repr(data))
+		elif liike1 == 1 and liike2 == 2:
+			liike = 8
+			print(liike)
+			s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+			s.connect((HOST, PORT))
+			s.send ("set_digital_out(8,True)" + "\n")
+			data = s.recv(1024)
+			s.close()
+			print ("Received", repr(data))
+		elif liike1 == 2 and liike2 == 2:
+			liike = 9
+			print(liike)
+			s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+			s.connect((HOST, PORT))
+			s.send ("set_digital_out(9,True)" + "\n")
+			data = s.recv(1024)
+			s.close()
+			print ("Received", repr(data))
+		else:
+			print("else printtaus")
+	
+
 class Board:
  
 	def __init__(self,other=None):
-	
-	self.player = 'X'
-	self.opponent = 'O'
-	self.empty = '.'
-	self.size = 3
-	self.fields = {}
-	for y in range(self.size):
-		for x in range(self.size):
-			self.fields[x,y] = self.empty
-		# copy constructor
+		self.player = 'X'
+		self.opponent = 'O'
+		self.empty = '.'
+		self.size = 3
+		self.fields = {}
+		for y in range(self.size):
+			for x in range(self.size):
+				self.fields[x,y] = self.empty
+				# copy constructor
 
-	if other:
-		self.__dict__ = deepcopy(other.__dict__)
+		if other:
+			self.__dict__ = deepcopy(other.__dict__)
 	
 	def move(self,x,y):
-	board = Board(self)
-	board.fields[x,y] = board.player
-	(board.player,board.opponent) = (board.opponent,board.player)
-	return board
+		board = Board(self)
+		board.fields[x,y] = board.player
+		(board.player,board.opponent) = (board.opponent,board.player)
+		return board
 	
 	def __minimax(self, player):
 		if self.won():
@@ -35,7 +139,7 @@ class Board:
 				return (+1,None)
 
 		elif self.tied():
-		return (0,None)
+			return (0,None)
 	
 		elif player:
 			best = (-2,None)
@@ -46,8 +150,8 @@ class Board:
 						best = (value,(x,y))
 			return best
 
-	else:
-		best = (+2,None)
+		else:
+			best = (+2,None)
 		for x,y in self.fields:
 			if self.fields[x,y]==self.empty:
 				value = self.move(x,y).__minimax(not player)[0]
@@ -67,8 +171,8 @@ class Board:
 	def won(self):
 
 	# horizontal
-	for y in range(self.size):
-	winning = []
+		for y in range(self.size):
+			winning = []
 		for x in range(self.size):
 			if self.fields[x,y] == self.opponent:
 				winning.append((x,y))
@@ -76,34 +180,34 @@ class Board:
 			return winning
 
 	# vertical
-	for x in range(self.size):
+		for x in range(self.size):
+			winning = []
+			for y in range(self.size):
+				if self.fields[x,y] == self.opponent:
+					winning.append((x,y))
+			if len(winning) == self.size:
+				return winning
+
+	# diagonal
 		winning = []
 		for y in range(self.size):
+			x = y
 			if self.fields[x,y] == self.opponent:
 				winning.append((x,y))
 		if len(winning) == self.size:
 			return winning
 
-	# diagonal
-	winning = []
-	for y in range(self.size):
-		x = y
-		if self.fields[x,y] == self.opponent:
-			winning.append((x,y))
-	if len(winning) == self.size:
-		return winning
-
 	# other diagonal
-	winning = []
-	for y in range(self.size):
-		x = self.size-1-y
-		if self.fields[x,y] == self.opponent:
-			winning.append((x,y))
-	if len(winning) == self.size:
-		return winning
+		winning = []
+		for y in range(self.size):
+			x = self.size-1-y
+			if self.fields[x,y] == self.opponent:
+				winning.append((x,y))
+		if len(winning) == self.size:
+			return winning
 
 	# default
-	return None
+		return None
  
 
 	def __str__(self):
@@ -112,7 +216,7 @@ class Board:
 			for x in range(self.size):
 				string+=self.fields[x,y]
 			string+="\n"
-	return string
+		return string
 
  
 class GUI:
@@ -138,9 +242,6 @@ class GUI:
 		self.board = Board()
 		self.update()
 	
-	def liikefunktio():
-		print("asdasdsadsad")
-	
 	
  
 	def move(self,x,y):
@@ -150,9 +251,13 @@ class GUI:
 		self.update()
 		move = self.board.best()
 		if move:
-			print(move)#tässä printataan liike
+			print(move)
 			self.board = self.board.move(*move)
 			self.update()
+			liike1 = x
+			liike2 = y
+			objekti = Liike()
+			objekti1 = objekti.liikefunktio(liike1,liike2)
 		self.app.config(cursor="")
  
 	def update(self):
@@ -179,4 +284,4 @@ class GUI:
 if __name__ == '__main__':
 	GUI().mainloop()
 
-			
+		
