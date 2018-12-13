@@ -1,20 +1,10 @@
-#ensimmainen kierros toimii :))
-
-
-
-# Echo client program
 import socket
-	# coding=UTF8
 from Tkinter import Tk, Button
 from tkFont import Font
 from copy import deepcopy
 
-
-
 class Liike:
-	
-
-	
+		
 	def __init__(self):
 		liike = 0
 	
