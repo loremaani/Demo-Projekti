@@ -1,0 +1,76 @@
+import socket
+
+#HOST = "192.168.0.9"    # The remote host
+HOST = "127.0.0.1"
+PORT = 8888              # The same port as used by the server
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.connect((HOST, PORT))
+move1 = ("0,2")
+liike = 0
+
+if  move1 == ("0,0"):
+	liike = 1
+	print(liike)
+	s.send ("set_digital_out(1,True)" + "\n")
+	data = s.recv(1024)
+	s.close()
+	print ("Received", repr(data))
+elif move1 == ("0,1"):
+	liike = 2
+	print(liike)
+	s.send ("set_digital_out(2,True)" + "\n")
+	data = s.recv(1024)
+	s.close()
+	print ("Received", repr(data))
+elif move1 == ("0,2"):
+	liike = 3
+	print(liike)
+	s.send ("set_digital_out(3,True)" + "\n")
+	data = s.recv(1024)
+	s.close()
+	print ("Received", repr(data))
+elif  move1 == ("1,0"):
+	liike = 4
+	print(liike)
+	s.send ("set_digital_out(4,True)" + "\n")
+	data = s.recv(1024)
+	s.close()
+	print ("Received", repr(data))
+elif move1 == ("1,1"):
+	liike = 5
+	print(liike)
+	s.send ("set_digital_out(5,True)" + "\n")
+	data = s.recv(1024)
+	s.close()
+	print ("Received", repr(data))
+elif move1 == ("1,2"):
+	liike = 6
+	print(liike)
+	s.send ("set_digital_out(6,True)" + "\n")
+	data = s.recv(1024)
+	s.close()
+	print ("Received", repr(data))
+elif  move1 == ("2,0"):
+	liike = 7
+	print(liike)
+	s.send ("set_digital_out(7,True)" + "\n")
+	data = s.recv(1024)
+	s.close()
+	print ("Received", repr(data))
+elif move1 == ("2,1"):
+	liike = 8
+	print(liike)
+	s.send ("set_digital_out(8,True)" + "\n")
+	data = s.recv(1024)
+	s.close()
+	print ("Received", repr(data))
+elif move1 == ("2,2"):
+	liike = 9
+	print(liike)
+	s.send ("set_digital_out(9,True)" + "\n")
+	data = s.recv(1024)
+	s.close()
+	print ("Received", repr(data))
+else:
+	print("else printtaus")
+	print(move1)
